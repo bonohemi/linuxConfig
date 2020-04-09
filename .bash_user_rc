@@ -1,0 +1,45 @@
+######################################################################################
+# 사용자 설정
+######################################################################################
+echo 'bash_user_rc'
+
+PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[01;31m\]\$ \[\033[00m\]'
+
+export TERM=xterm-256color
+export TIME_STYLE=long-iso
+
+#[[ -d ~/app/java ]] echo 'find java';      JAVA_HOME=~/app/java;        export PATH=${JAVA_HOME}/bin:$PATH
+#[[ -d ~/app/hadoop ]] &&    export HADOOP_HOME=~/app/hadoop;    export PATH=${HADOOP_HOME}/bin:$PATH
+#[[ -d ~/app/spark ]] &&     export SPARK_HOME=~/app/spark;      export PATH=${SPARK_HOME}/bin:$PATH
+#[[ -d ~/app/node ]] &&      export NODE_HOME=~/app/node;        export PATH=${NODE_HOME}/bin:$PATH
+#[[ -d ~/app/grafana ]] &&   export GRAFANA_HOME=~/app/node;     export PATH=${GRAFANA_HOME}/bin:$PATH
+#[[ -d ~/app/tomcat ]] &&    export CATALINA_HOME=~/app/node;    export PATH=${CATALINA_HOME}/bin:$PATH
+
+# Append our default paths
+appendpath () {
+    case ":$PATH:" in
+        *:"$1":*)
+            ;;
+        *)
+            #PATH="$1:${PATH:+$PATH}"
+            PATH="$1:${PATH}"
+    esac
+}
+
+if [ -d ~/app/java ]; then
+    JAVA_HOME=~/app/java
+    #PATH=${JAVA_HOME}/bin:$PATH
+    appendpath "${JAVA_HOME}/bin"
+fi
+
+if [ -d ~/app/node ]; then
+    NODE_HOME=~/app/node
+    #PATH=${NODE_HOME}/bin:$PATH
+    appendpath "${NODE_HOME}/bin"
+fi
+
+appendpath "/home/bonohemi/bin"
+appendpath "/home/bonohemi/.local/bin"
+#appendpath "/home/bonohemi/anaconda3/bin"
+
+unset appendpath
