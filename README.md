@@ -4,9 +4,10 @@
 ~나 .config 디렉토리에서 git clone명령 수행
 </br>
 .config 디렉토리 추천
-'''
+
+```
 git clone https://github.com/bonohemi/linuxConfig
-'''
+```
 
 
 ## vim 및 neovim(nvim) 설정
