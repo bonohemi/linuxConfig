@@ -1,0 +1,17 @@
+version: '3.7'
+
+services:
+  jenkins:
+    container_name: jenkins
+    image: jenkins/jenkins:latest
+    privileged: true
+    user: root
+    ports:
+      - 8989:8080
+      - 50000:50000
+    volumes:
+      - ~/docker/instance/jenkins:/var/jenkins_home
+networks:
+  default:
+    external:
+      name: my_bridge_01

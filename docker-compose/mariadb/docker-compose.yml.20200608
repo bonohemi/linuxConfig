@@ -1,0 +1,27 @@
+version: "3.8"
+# Use root/example as user/password credentials
+
+services:
+  mariadb:
+    container_name: mariadb_001
+    image: mariadb:10.4.13
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=exec00cx
+      - TZ="Asia/Seoul"
+    volumes:
+      #- ~/docker/volumes/mariadb/conf.d:/etc/mysql/conf.d
+      #- ~/docker/volumes/mariadb/data:/var/lib/mysql
+      #- ~/docker/mariadb/mariadb_001/mysql:/etc/mysql:ro
+      - ~/docker/mariadb/mariadb_001/data:/var/lib/mysql
+      - ~/docker/mariadb/mariadb_001/conf:/etc/mysql/conf.d:ro
+      - ~/docker/mariadb/mariadb_001/logs:/var/log/maria
+      #command:
+      #-character-set-server=utf8
+      #-collation-server=utf8_unicode_ci
+    ports:
+      - 13306:3306
+networks:
+  default:
+    external:
+      name: my_bridge_01

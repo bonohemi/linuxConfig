@@ -1,0 +1,24 @@
+version: '3'
+services:
+  dokuwiki:
+    container_name: dokuwiki
+    image: bitnami/dokuwiki:latest
+    restart: always
+    ports:
+      - '8181:80'
+      - '8143:443'
+    volumes:
+      - ~/docker/instance/dokuwiki:/bitnami
+    environment:
+      - DOKUWIKI_USERNAME=superuser
+      - DOKUWIKI_FULL_NAME=Sungkuk Kim
+      - DOKUWIKI_PASSWORD=exec00cx
+      - DOKUWIKI_EMAIL= bonohemi@gmail.com
+      - DOKUWIKI_WIKI_NAME=bonohemi
+      - PHP_MEMORY_LIMIT=256M
+      - TZ=Asia/Seoul
+      - APP_URL=/dokuwiki
+networks:
+  default:
+    external:
+      name: my_bridge_01

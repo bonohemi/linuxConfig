@@ -1,0 +1,10 @@
+version: "3"
+
+services:
+  mediawiki:
+    container_name: mediawiki
+    image: mediawiki:latest
+    volumes:
+      - ./mediawiki_data/html:/var/www/html
+    ports:
+      - 8080:80

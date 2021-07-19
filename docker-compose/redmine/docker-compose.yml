@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+  redmine:
+    instance_name: redmine
+    image: redmine:latest
+    restart: always
+    ports:
+      - 3000:3000
+    environment:
+      REDMINE_DB_MYSQL: mariadb
+      REDMINE_DB_PASSWORD: exec00cx
+      REDMINE_DB_DATABASE: redmine
+      REDMINE_DB_ENCODING: utf8
+      #REDMINE_NO_DB_MIGRATE: true
+    volumes:
+      - ~/docker/instance/redmine/data:/usr/src/redmine/files
+      - ~/docker/instance/redmine/plugins:/usr/src/redmine/plugins
+      - ~/docker/instance/redmine/themes:/usr/src/redmine/public/themes
+    external_links:
+      - mariadb:mariadb_001
+networks:
+  default:
+    external:
+      name: my_bridge_01

@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+  rabbitmq:
+    container_name: rbmq_01
+    image: rabbitmq:3-management
+    restart: unless-stopped
+    hostname: tomato-mq
+    environment:
+      - RABBITMQ_DEFAULT_USER=tomato
+      - RABBITMQ_DEFAULT_PASS=tomato1234
+    ports:
+      - 5672:5672
+      - 8672:15672
+networks:
+  default:
+    external:
+      name: my_bridge_01
