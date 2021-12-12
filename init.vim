@@ -231,3 +231,6 @@ nnoremap <Leader>, :nohls<CR>
 " neovim 마지막 라인이 중복 출력되는 이슈
 " BCE (background color erase)
 "highlight Normal ctermbg=NONE
+
+au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab autoindent
