@@ -1,9 +1,9 @@
-echo 'bash aliases'
+echo '.bashr_aliases'
 alias mc='. /usr/lib/mc/mc-wrapper.sh'
 alias app='cd ~/app'
 alias dev='cd ~/dev'
 alias tmux='tmux -2'
-alias vi='vim'
+alias vi='nvim'
 
 
 # some more ls aliases

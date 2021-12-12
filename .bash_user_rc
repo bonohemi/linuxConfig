@@ -1,7 +1,7 @@
 ######################################################################################
 # 사용자 설정
 ######################################################################################
-echo 'bash_user_rc'
+echo '.bash_user_rc'
 
 PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[01;31m\]\$ \[\033[00m\]'
 
@@ -38,8 +38,7 @@ if [ -d ~/app/node ]; then
     appendpath "${NODE_HOME}/bin"
 fi
 
-appendpath "/home/bonohemi/bin"
-appendpath "/home/bonohemi/.local/bin"
-#appendpath "/home/bonohemi/anaconda3/bin"
+appendpath "/home/${USER}/bin"
+appendpath "/home/${USER}/.local/bin"
 
 unset appendpath

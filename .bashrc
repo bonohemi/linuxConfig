@@ -1,10 +1,9 @@
 #
 # ~/.bashrc
 #
+echo '.bashrc'
 
 [[ $- != *i* ]] && return
-
-echo 'bashrc'
 
 colors() {
 	local fgc bgc vals seq0
@@ -72,9 +71,9 @@ if ${use_color} ; then
 	fi
 
 	if [[ ${EUID} == 0 ]] ; then
-		PS1='\[\033[01;31m\][\h\[\033[01;36m\] \w\[\033[01;31m\]]\$\[\033[00m\] '
+		PS1='\[\033[01;31m\][\h\[\033[01;36m\] \W\[\033[01;31m\]]\$\[\033[00m\] '
 	else
-		PS1='\[\033[01;32m\][\u@\h\[\033[01;37m\] \w\[\033[01;32m\]]\$\[\033[00m\] '
+		PS1='\[\033[01;32m\][\u@\h\[\033[01;37m\] \W\[\033[01;32m\]]\$\[\033[00m\] '
 	fi
 
 	alias ls='ls --color=auto'
@@ -99,8 +98,6 @@ alias np='nano -w PKGBUILD'
 alias more=less
 
 xhost +local:root > /dev/null 2>&1
-
-complete -cf sudo
 
 # Bash won't get SIGWINCH if another process is in the foreground.
 # Enable checkwinsize so that bash will check the terminal size when
@@ -139,36 +136,6 @@ ex ()
     echo "'$1' is not a valid file"
   fi
 }
-
-
-
-# Append our default paths
-appendpath () {
-    case ":$PATH:" in
-        *:"$1":*)
-            ;;
-        *)
-            #PATH="$1:${PATH:+$PATH}"
-            PATH="$1:${PATH}"
-    esac
-}
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/bonohemi/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/bonohemi/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/bonohemi/anaconda3/etc/profile.d/conda.sh"
-    else
-		appendpath "/home/bonohemi/anaconda3/bin"
-#        export PATH="/home/bonohemi/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-unset appendpath
 
 [[ -f ~/.bashrc ]] && . ~/.bash_user_rc
 [[ -f ~/.bashrc ]] && . ~/.bash_aliases
